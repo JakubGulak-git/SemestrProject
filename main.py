@@ -6,7 +6,7 @@ import time
 width = shutil.get_terminal_size().columns # znajduje szerokosc okna
 print(Fore.RED + "💲💲💲 Witamy w Kasynie 💲💲💲".center(width*2))
 
-# funkcja która pobiera imię i sprawdza czy jest poprawne!!!
+# funkcja która pobiera imię i sprawdza czy jest poprawne
 def get_user_name():
     while True:
         user_name1 = input(Fore.RESET + "Podaj swoję imię: ")
