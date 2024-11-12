@@ -63,11 +63,11 @@ def chose_game_place():
 
     match game_place:
         case 1:
-            print("wybrałes blacjack")
+            print("Wybrałeś blackjack'a.")
         case 2:
-            print("wybrałes bandyte")
+            print("Wybrałeś jednorękiego bandytę.")
         case 3:
-            print("wybrałes ruletke")
+            print("Wybrałeś ruletkę.")
         case 4:
             menu()
 
