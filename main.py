@@ -43,6 +43,7 @@ def menu():
                         back = input("Kliknij ENTER aby wrócić do menu kasyna...")
                     case 3:
                         print("Do zobaczenia!")
+                        exit()
         except ValueError:
             print("mega blad")
 
