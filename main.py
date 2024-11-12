@@ -26,11 +26,9 @@ def welcome():
 def menu():
     while True:
         try:
-            chose_from_menu = int(input(f"\n Menu: \n 1. Wybór gier \n "
+            chose_from_menu = int(input(f"Menu: \n 1. Wybór gier \n "
                                    f"2. Top 100 wygranych \n 3. Opuść kasyno \n"))
-            if chose_from_menu not in [1,2,3]:
-                print("Błąd: wybierz opcję 1, 2 lub 3.")
-            else:
+            if chose_from_menu in [1,2,3]:
                 match chose_from_menu:
                     case 1:
                         print("Wybrałeś wybór gier.")
@@ -44,8 +42,10 @@ def menu():
                     case 3:
                         print("Do zobaczenia!")
                         exit()
+            else:
+                print("Błąd: wybierz opcję 1, 2 lub 3.")
         except ValueError:
-            print("mega blad")
+            print("Błąd: wybierz opcję 1, 2 lub 3.")
 
 
 def chose_game_place():
@@ -56,9 +56,9 @@ def chose_game_place():
             if game_place in [1,2,3,4]:
                 break
             else:
-                print("blad")
+                print("Błąd: wybierz opcję 1, 2, 3 lub 4.")
         except ValueError:
-            print("mega blad")
+            print("Błąd: wybierz opcję 1, 2, 3 lub 4.")
 
 
     match game_place:
