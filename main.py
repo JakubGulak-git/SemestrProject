@@ -28,20 +28,22 @@ def menu():
         try:
             chose_from_menu = int(input(f"\n Menu: \n 1. Wybór gier \n "
                                    f"2. Top 100 wygranych \n 3. Opuść kasyno \n"))
-            if chose_from_menu in [1,2,3]:
-                break
+            if chose_from_menu not in [1,2,3]:
+                print("Błąd: wybierz opcję 1, 2 lub 3.")
             else:
-                print("blad")
+                match chose_from_menu:
+                    case 1:
+                        print("wybrałes gry")
+                        break
+                    case 2:
+                        print("Top 100 wygranych:")
+                        f = open("top.txt", "r")
+                        print(f.read())
+                        back = input("Kliknij ENTER aby wrócić do menu kasyna...")
+                    case 3:
+                        print("Do zobaczenia!")
         except ValueError:
             print("mega blad")
-
-        match chose_from_menu:
-            case 1:
-                print("wybrałes gry")
-            case 2:
-                print("wybrałes top 100")
-            case 3:
-                print("papa")
 
 
 def chose_game_place():
@@ -71,6 +73,5 @@ def chose_game_place():
 welcome()
 time.sleep(1)
 menu()
-f = open("top.txt", "r")
-print(f.read())
+
 
