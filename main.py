@@ -33,7 +33,8 @@ def menu():
             else:
                 match chose_from_menu:
                     case 1:
-                        print("wybrałes gry")
+                        print("Wybrałeś wybór gier.")
+                        chose_game_place()
                         break
                     case 2:
                         print("Top 100 wygranych:")
@@ -49,9 +50,9 @@ def menu():
 def chose_game_place():
     while True:
         try:
-            game_place = int(input(f"\n Wybierz stanowisko do gry: \n 1. Blackjack \n "
-                           f"2. Jednoręki bandyta \n 3. Ruletka \n"))
-            if game_place in [1,2,3]:
+            game_place = int(input(f"Wybierz stanowisko do gry: \n 1. Blackjack \n "
+                           f"2. Jednoręki bandyta \n 3. Ruletka \n 4. Powrót \n"))
+            if game_place in [1,2,3,4]:
                 break
             else:
                 print("blad")
@@ -66,6 +67,8 @@ def chose_game_place():
             print("wybrałes bandyte")
         case 3:
             print("wybrałes ruletke")
+        case 4:
+            menu()
 
 
 
