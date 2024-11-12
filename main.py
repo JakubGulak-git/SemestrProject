@@ -23,6 +23,27 @@ def welcome():
     print(f"Cześć {get_user_name()}, twoja początkowa ilośc pieniędzy to: {get_money_amount()}$."
           f" Baw się dobrze!")
 
+def menu():
+    while True:
+        try:
+            chose_from_menu = int(input(f"\n Menu: \n 1. Wybór gier \n "
+                                   f"2. Top 100 wygranych \n 3. Opuść kasyno \n"))
+            if chose_from_menu in [1,2,3]:
+                break
+            else:
+                print("blad")
+        except ValueError:
+            print("mega blad")
+
+        match chose_from_menu:
+            case 1:
+                print("wybrałes gry")
+            case 2:
+                print("wybrałes top 100")
+            case 3:
+                print("papa")
+
+
 def chose_game_place():
     while True:
         try:
@@ -49,7 +70,7 @@ def chose_game_place():
 
 welcome()
 time.sleep(1)
-chose_game_place()
+menu()
 f = open("top.txt", "r")
 print(f.read())
 
