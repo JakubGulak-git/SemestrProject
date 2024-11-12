@@ -50,4 +50,6 @@ def chose_game_place():
 welcome()
 time.sleep(1)
 chose_game_place()
+f = open("top.txt", "r")
+print(f.read())
 
