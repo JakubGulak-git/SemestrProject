@@ -3,7 +3,7 @@ import shutil
 import random
 import time
 
-width = shutil.get_terminal_size().columns # znajduje szerokosc okna
+width = shutil.get_terminal_size().columns # znajduje szerokosc oknaa
 print(Fore.RED + "💲💲💲 Witamy w Kasynie 💲💲💲".center(width*2))
 
 # funkcja która pobiera imię i sprawdza czy jest poprawne
