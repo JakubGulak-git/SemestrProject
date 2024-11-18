@@ -1,3 +1,5 @@
+from typing import final
+
 from colorama import Fore
 import shutil
 import random
@@ -48,6 +50,15 @@ def menu():
         except ValueError:
             print("Błąd: wybierz opcję 1, 2 lub 3.")
 
+def roulette():
+    roulette_numbers = list(range(1,37))
+    print("Kręcenie ruletki")
+    for i in range(36):
+        print(random.choice(roulette_numbers))
+        time.sleep(0.1)
+    final_number = random.choice(roulette_numbers)
+    print(f"Liczba wylosowana to: {final_number}")
+
 
 def chose_game_place():
     while True:
@@ -69,7 +80,8 @@ def chose_game_place():
             print("Wybrałeś jednorękiego bandytę.")
         case 3:
             print("Wybrałeś ruletkę.")
-            print(actuall_money)
+            print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+            roulette()
             # for i in range(10, 1, -1):
             #     time.sleep(1)
             #     print(i)
