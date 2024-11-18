@@ -52,12 +52,22 @@ def menu():
 
 def roulette():
     roulette_numbers = list(range(1,37))
+    red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
+    black_numbers = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
+    green_number = {0}
     print("Kręcenie ruletki")
     for i in range(36):
         print(random.choice(roulette_numbers))
         time.sleep(0.1)
     final_number = random.choice(roulette_numbers)
-    print(f"Liczba wylosowana to: {final_number}")
+    color = ""
+    if final_number in red_numbers:
+        color = "czerwony"
+    if final_number in black_numbers:
+        color = "czarny"
+    if final_number in green_number:
+        color = "zielony"
+    print(f"Liczba wylosowana to: {final_number} - {color}")
 
 
 def chose_game_place():
