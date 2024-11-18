@@ -18,9 +18,10 @@ def get_user_name():
 def get_money_amount():
     return random.randint(100,1000)
 
+actuall_money = get_money_amount()
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
 def welcome():
-    print(f"Cześć {get_user_name()}, twoja początkowa ilośc pieniędzy to: {get_money_amount()}$."
+    print(f"Cześć {get_user_name()}, twoja początkowa ilośc pieniędzy to: {actuall_money}$."
           f" Baw się dobrze!")
 
 def menu():
@@ -68,6 +69,7 @@ def chose_game_place():
             print("Wybrałeś jednorękiego bandytę.")
         case 3:
             print("Wybrałeś ruletkę.")
+            print(actuall_money)
             # for i in range(10, 1, -1):
             #     time.sleep(1)
             #     print(i)
