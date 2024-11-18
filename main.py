@@ -3,7 +3,7 @@ import shutil
 import random
 import time
 
-width = shutil.get_terminal_size().columns # znajduje szerokosc oknaa
+width = shutil.get_terminal_size().columns # znajduje szerokosc okna
 print(Fore.RED + "💲💲💲 Witamy w Kasynie 💲💲💲".center(width*2))
 
 # funkcja która pobiera imię i sprawdza czy jest poprawne
@@ -68,6 +68,9 @@ def chose_game_place():
             print("Wybrałeś jednorękiego bandytę.")
         case 3:
             print("Wybrałeś ruletkę.")
+            # for i in range(10, 1, -1):
+            #     time.sleep(1)
+            #     print(i)
         case 4:
             menu()
 
