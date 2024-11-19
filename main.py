@@ -41,7 +41,7 @@ def menu():
                         print("Top 100 wygranych:")
                         f = open("top.txt", "r")
                         print(f.read())
-                        back = input("Kliknij ENTER aby wrócić do menu kasyna...")
+                        input("Kliknij ENTER aby wrócić do menu kasyna...")
                     case 3:
                         print("Do zobaczenia!")
                         exit()
@@ -55,7 +55,8 @@ def roulette():
     red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
     black_numbers = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
     green_number = {0}
-    print("Kręcenie ruletki")
+    print("Rozpoczynam kręcenie ruletki...")
+    time.sleep(5)
     for i in range(36):
         print(final_number := random.choice(roulette_numbers))
         time.sleep(0.1)
@@ -87,6 +88,7 @@ def chose_game_place():
             print("Wybrałeś blackjack'a.")
         case 2:
             print("Wybrałeś jednorękiego bandytę.")
+            # 💲 💎 💩
         case 3:
             print("Wybrałeś ruletkę.")
             print(f"Aktualna ilość pieniędzy: {actuall_money} $")
@@ -100,5 +102,6 @@ def chose_game_place():
 welcome()
 time.sleep(1)
 menu()
+
 
 
