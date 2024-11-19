@@ -56,13 +56,49 @@ def menu():
             print("Błąd: wybierz opcję 1, 2 lub 3.")
 
 def roulette(rn):
-    x = input("CO chcesz obstawic? 1. czarne 2. czerwone 3. zielone")
-    if x == "1":
-        x = "czarny"
-    if x == "2":
-        x = "czerwony"
-    if x == "3":
-        x = "zielony"
+    while True:
+        try:
+            chose_from_roulette_menu = int(input(f" 1. Kolory \n "
+                                   f"2. Dokładne liczby \n 3. Sekwencje \n"))
+            if chose_from_roulette_menu in [1,2,3]:
+                match chose_from_roulette_menu:
+                    case 1:
+                        print("Wybrałeś kolory.")
+                        print("Jaki kolor chcesz obstawić?")
+                        while True:
+                            try:
+                                chose_from_colors = int(input(f"Menu: \n 1. Czarny \n "
+                                                            f"2. Czerwony \n 3. Zielony \n"))
+                                if chose_from_colors in [1, 2, 3]:
+                                    match chose_from_colors:
+                                        case 1:
+                                            print("Wybrałeś czarny")
+                                            x = "1"
+                                            break
+                                        case 2:
+                                            print("Wybrałeś czerwony")
+                                            x = "2"
+                                            break
+                                        case 3:
+                                            print("Wybrałeś zielony")
+                                            x = "3"
+                                            break
+                                else:
+                                    print("Błąd: wybierz opcję 1, 2 lub 3.")
+                            except ValueError:
+                                print("Błąd: wybierz opcję 1, 2 lub 3.")
+                        break # ważny break
+                    case 2:
+                        print("Wybrałeś dokładne liczby")
+                        break
+                    case 3:
+                        print("Wybrałeś sekwencje")
+                        break
+            else:
+                print("Błąd: wybierz opcję 1, 2 lub 3.")
+        except ValueError:
+            print("Błąd: wybierz opcję 1, 2 lub 3.")
+
 
     print("Rozpoczynam kręcenie ruletki...")
     time.sleep(2)
