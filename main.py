@@ -57,9 +57,8 @@ def roulette():
     green_number = {0}
     print("Kręcenie ruletki")
     for i in range(36):
-        print(random.choice(roulette_numbers))
+        print(final_number := random.choice(roulette_numbers))
         time.sleep(0.1)
-    final_number = random.choice(roulette_numbers)
     color = ""
     if final_number in red_numbers:
         color = "czerwony"
@@ -67,7 +66,7 @@ def roulette():
         color = "czarny"
     if final_number in green_number:
         color = "zielony"
-    print(f"Liczba wylosowana to: {final_number} - {color}")
+    print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
 
 
 def chose_game_place():
@@ -92,9 +91,6 @@ def chose_game_place():
             print("Wybrałeś ruletkę.")
             print(f"Aktualna ilość pieniędzy: {actuall_money} $")
             roulette()
-            # for i in range(10, 1, -1):
-            #     time.sleep(1)
-            #     print(i)
         case 4:
             menu()
 
