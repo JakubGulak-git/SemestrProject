@@ -5,6 +5,11 @@ import shutil
 import random
 import time
 
+roulette_numbers = list(range(1,37))
+red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
+black_numbers = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
+green_number = {0}
+
 width = shutil.get_terminal_size().columns # znajduje szerokosc okna
 print(Fore.RED + "💲💲💲 Witamy w Kasynie 💲💲💲".center(width*2))
 
@@ -50,15 +55,19 @@ def menu():
         except ValueError:
             print("Błąd: wybierz opcję 1, 2 lub 3.")
 
-def roulette():
-    roulette_numbers = list(range(1,37))
-    red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
-    black_numbers = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
-    green_number = {0}
+def roulette(rn):
+    x = input("CO chcesz obstawic? 1. czarne 2. czerwone 3. zielone")
+    if x == "1":
+        x = "czarny"
+    if x == "2":
+        x = "czerwony"
+    if x == "3":
+        x = "zielony"
+
     print("Rozpoczynam kręcenie ruletki...")
-    time.sleep(5)
+    time.sleep(2)
     for i in range(36):
-        print(final_number := random.choice(roulette_numbers))
+        print(final_number := random.choice(rn))
         time.sleep(0.1)
     color = ""
     if final_number in red_numbers:
@@ -68,6 +77,10 @@ def roulette():
     if final_number in green_number:
         color = "zielony"
     print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
+    if color == x:
+        print("Wygrałeś")
+    else:
+        print("Przegrałeś")
 
 
 def chose_game_place():
@@ -92,7 +105,7 @@ def chose_game_place():
         case 3:
             print("Wybrałeś ruletkę.")
             print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-            roulette()
+            roulette(roulette_numbers)
         case 4:
             menu()
 
@@ -102,6 +115,7 @@ def chose_game_place():
 welcome()
 time.sleep(1)
 menu()
+
 
 
 
