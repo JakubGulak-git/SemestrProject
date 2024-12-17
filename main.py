@@ -25,6 +25,23 @@ def get_user_name():
 def get_money_amount():
     return random.randint(100,1000)
 
+def bet():
+    global actuall_money
+    print(f"Twoja aktualna ilość pieniędzy: {actuall_money}$")
+    if actuall_money != 0:
+        while True:
+            bet_money = int(input("ile $$$ chcesz postawić? "))
+            if bet_money > actuall_money:
+                print("nie masz tyle sianka")
+            else:
+                print("ok")
+                actuall_money -= bet_money
+                break
+    else:
+        print("Koniec gry na dziś!")
+    return actuall_money
+
+
 actuall_money = get_money_amount()
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
 def welcome():
@@ -39,7 +56,8 @@ def menu():
             if chose_from_menu in [1,2,3]:
                 match chose_from_menu:
                     case 1:
-                        print("Wybrałeś: wybór gier.")
+                        print("Wybrałeś: wybór gier")
+                        time.sleep(0.5)
                         chose_game_place()
                         break
                     case 2:
@@ -63,30 +81,31 @@ def roulette(rn):
             if chose_from_roulette_menu in [1,2,3]:
                 match chose_from_roulette_menu:
                     case 1:
-                        print("Wybrałeś kolory.")
+                        print("Wybrałeś kolory")
                         print("Jaki kolor chcesz obstawić?")
                         while True:
                             try:
-                                chose_from_colors = int(input(f"Menu: \n 1. Czarny \n "
+                                chose_from_colors = int(input(f" 1. Czarny \n "
                                                             f"2. Czerwony \n 3. Zielony \n"))
                                 if chose_from_colors in [1, 2, 3]:
                                     match chose_from_colors:
                                         case 1:
                                             print("Wybrałeś: czarny")
-                                            x = "1"
+                                            x = "czarny"
                                             break
                                         case 2:
                                             print("Wybrałeś: czerwony")
-                                            x = "2"
+                                            x = "czerwony"
                                             break
                                         case 3:
                                             print("Wybrałeś: zielony")
-                                            x = "3"
+                                            x = "zielony"
                                             break
                                 else:
                                     print("Błąd: wybierz opcję 1, 2 lub 3.")
                             except ValueError:
                                 print("Błąd: wybierz opcję 1, 2 lub 3.")
+                        print(bet())
                         break # ważny break
                     case 2:
                         print("Wybrałeś: dokładne liczby")
@@ -99,7 +118,7 @@ def roulette(rn):
 
 
     print("Rozpoczynam kręcenie ruletki...")
-    time.sleep(2)
+    time.sleep(1.6)
     for i in range(36):
         print(final_number := random.choice(rn))
         time.sleep(0.1)
@@ -138,6 +157,7 @@ def chose_game_place():
             # 💲 💎 💩
         case 3:
             print("Wybrałeś ruletkę.")
+            time.sleep(0.5)
             print(f"Co chcesz obstawić?")
             roulette(roulette_numbers)
         case 4:
