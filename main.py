@@ -39,7 +39,7 @@ def menu():
             if chose_from_menu in [1,2,3]:
                 match chose_from_menu:
                     case 1:
-                        print("Wybrałeś wybór gier.")
+                        print("Wybrałeś: wybór gier.")
                         chose_game_place()
                         break
                     case 2:
@@ -72,15 +72,15 @@ def roulette(rn):
                                 if chose_from_colors in [1, 2, 3]:
                                     match chose_from_colors:
                                         case 1:
-                                            print("Wybrałeś czarny")
+                                            print("Wybrałeś: czarny")
                                             x = "1"
                                             break
                                         case 2:
-                                            print("Wybrałeś czerwony")
+                                            print("Wybrałeś: czerwony")
                                             x = "2"
                                             break
                                         case 3:
-                                            print("Wybrałeś zielony")
+                                            print("Wybrałeś: zielony")
                                             x = "3"
                                             break
                                 else:
@@ -89,11 +89,9 @@ def roulette(rn):
                                 print("Błąd: wybierz opcję 1, 2 lub 3.")
                         break # ważny break
                     case 2:
-                        print("Wybrałeś dokładne liczby")
-                        break
+                        print("Wybrałeś: dokładne liczby")
                     case 3:
-                        print("Wybrałeś sekwencje")
-                        break
+                        print("Wybrałeś: sekwencje")
             else:
                 print("Błąd: wybierz opcję 1, 2 lub 3.")
         except ValueError:
@@ -134,13 +132,13 @@ def chose_game_place():
 
     match game_place:
         case 1:
-            print("Wybrałeś blackjack'a.")
+            print("Wybrałeś: Blackjack")
         case 2:
-            print("Wybrałeś jednorękiego bandytę.")
+            print("Wybrałeś: Jednoręki Bandyta.")
             # 💲 💎 💩
         case 3:
             print("Wybrałeś ruletkę.")
-            print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+            print(f"Co chcesz obstawić?")
             roulette(roulette_numbers)
         case 4:
             menu()
