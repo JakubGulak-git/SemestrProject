@@ -34,7 +34,6 @@ def bet():
             if bet_money > actuall_money:
                 print("nie masz tyle sianka")
             else:
-                print("ok")
                 actuall_money -= bet_money
                 break
     else:
@@ -132,8 +131,13 @@ def roulette(rn):
     print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
     if color == x:
         print("Wygrałeś")
+        # actuall_money = actuall_money + (bet_moe)
+        print(f"Aktualna ilość pieniędzy: {actuall_money}")
     else:
         print("Przegrałeś")
+        print(f"Aktualna ilość pieniędzy: {actuall_money}")
+
+
 
 
 def chose_game_place():
@@ -154,7 +158,6 @@ def chose_game_place():
             print("Wybrałeś: Blackjack")
         case 2:
             print("Wybrałeś: Jednoręki Bandyta.")
-            # 💲 💎 💩
         case 3:
             print("Wybrałeś ruletkę.")
             time.sleep(0.5)
