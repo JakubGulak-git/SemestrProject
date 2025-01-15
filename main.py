@@ -63,7 +63,7 @@ def menu():
                         print(f.read())
                         input("Kliknij ENTER aby wrócić do menu kasyna...")
                     case 3:
-                        print("Do zobaczenia!")
+                        print(f"Do zobaczenia! \nZabierasz ze sobą: {actuall_money} $")
                         exit()
             else:
                 print("Błąd: wybierz opcję 1, 2 lub 3.")
@@ -130,8 +130,11 @@ def roulette(rn):
     print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
     if color == x:
         print("Wygrałeś")
-        actuall_money += + (bet_money*2)
-        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+        if color == "zielony":
+            actuall_money += + (bet_money * 12)
+        else:
+            actuall_money += + (bet_money*2)
+            print(f"Aktualna ilość pieniędzy: {actuall_money} $")
     else:
         print("Przegrałeś")
         print(f"Aktualna ilość pieniędzy: {actuall_money} $")
