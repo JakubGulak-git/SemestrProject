@@ -31,16 +31,13 @@ actuall_money = get_money_amount()
 def bet():
     global actuall_money, bet_money
     print(f"Twoja aktualna ilość pieniędzy: {actuall_money}$")
-    if actuall_money != 0:
-        while True:
-            bet_money = int(input("ile $$$ chcesz postawić? "))
-            if bet_money > actuall_money:
-                print("nie masz tyle sianka")
-            else:
-                actuall_money -= bet_money
-                break
-    else:
-        print("Koniec gry na dziś!")
+    while True:
+        bet_money = int(input("ile $$$ chcesz postawić? "))
+        if bet_money > actuall_money:
+            print("nie masz tyle pieniędzy")
+        else:
+            actuall_money -= bet_money
+            break
     return actuall_money
 
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
@@ -138,11 +135,18 @@ def roulette(rn):
     else:
         print("Przegrałeś")
         print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-
+    time.sleep(2)
+    menu()
 
 
 
 def chose_game_place():
+    global actuall_money
+    if actuall_money <= 0:
+        print("Nie masz wystarczającej ilości pieniędzy, wracasz do menu.")
+        time.sleep(2)
+        menu()
+
     while True:
         try:
             game_place = int(input(f"Wybierz stanowisko do gry: \n 1. Blackjack \n "
