@@ -195,11 +195,6 @@ def roulette(rn):
         except ValueError:
             print("Błąd: wybierz opcję 1, 2 lub 3.")
 
-
-
-
-
-
 def chose_game_place():
     global actuall_money
     if actuall_money <= 0:
@@ -222,6 +217,20 @@ def chose_game_place():
     match game_place:
         case 1:
             print("Wybrałeś: Blackjack")
+            bet()
+            wartosci = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+            koloru = ["♠", "♥", "♦", "♣"]
+
+            talia = [f"{wartosc}{kolor}" for wartosc in wartosci for kolor in koloru]
+            random.shuffle(talia)
+            print(talia)
+
+            player_cards = random.sample(talia, 2)
+            dealer_cards = random.sample(talia, 2)
+
+            print(f"Twoje karty: {player_cards}")
+            print(f"Jedna z kart dealera: {dealer_cards[0]}")
+            print("Dobierasz czy pasujesz?")
         case 2:
             print("Wybrałeś: Jednoręki Bandyta.")
         case 3:
