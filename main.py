@@ -159,8 +159,37 @@ def roulette(rn):
                             else:
                                 print("Przegrałeś!")
                                 print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+                            menu()
                     case 3:
+                        chosen_numbers = 0
                         print("Wybrałeś: sekwencje")
+                        print("Jaką sekwencję wybierasz?")
+                        chose_from_menu = int(input(f" \n 1. Parzyste \n "
+                                f"2. Nieparzyste \n"))
+                        if chose_from_menu in [1, 2]:
+                            match chose_from_menu:
+                                case 1:
+                                    print("Wybrałeś: parzyste")
+                                    chosen_numbers = [number for number in roulette_numbers if number % 2 == 0]
+                                case 2:
+                                    print("Wybrałeś: nieparzyste")
+                                    chosen_numbers = [number for number in roulette_numbers if number % 2 == 1]
+                            bet()
+                            print("Rozpoczynam kręcenie ruletki...")
+                            time.sleep(1.6)
+                            for i in roulette_numbers:
+                                print(final_number := random.choice(rn))
+                                time.sleep(0.1)
+                            print(f"Wylosowana liczba to: {final_number}")
+                            if final_number in chosen_numbers:
+                                print("Wygrałeś!")
+                                actuall_money += + (bet_money * 2)
+                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+                            else:
+                                print("Przegrałeś!")
+                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+                time.sleep(2)
+                menu()
             else:
                 print("Błąd: wybierz opcję 1, 2 lub 3.")
         except ValueError:
