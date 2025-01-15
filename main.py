@@ -125,6 +125,7 @@ def roulette(rn):
                             print("Wygrałeś")
                             if color == "zielony":
                                 actuall_money += + (bet_money * 12)
+                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
                             else:
                                 actuall_money += + (bet_money * 2)
                                 print(f"Aktualna ilość pieniędzy: {actuall_money} $")
@@ -196,7 +197,7 @@ def roulette(rn):
             print("Błąd: wybierz opcję 1, 2 lub 3.")
 
 def chose_game_place():
-    global actuall_money
+    global actuall_money, final_symbols
     if actuall_money <= 0:
         print("Nie masz wystarczającej ilości pieniędzy, wracasz do menu.")
         time.sleep(2)
@@ -217,22 +218,42 @@ def chose_game_place():
     match game_place:
         case 1:
             print("Wybrałeś: Blackjack")
-            bet()
-            wartosci = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-            koloru = ["♠", "♥", "♦", "♣"]
-
-            talia = [f"{wartosc}{kolor}" for wartosc in wartosci for kolor in koloru]
-            random.shuffle(talia)
-            print(talia)
-
-            player_cards = random.sample(talia, 2)
-            dealer_cards = random.sample(talia, 2)
-
-            print(f"Twoje karty: {player_cards}")
-            print(f"Jedna z kart dealera: {dealer_cards[0]}")
-            print("Dobierasz czy pasujesz?")
+            # bet()
+            # wartosci = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+            # koloru = ["♠", "♥", "♦", "♣"]
+            #
+            # talia = [f"{wartosc}{kolor}" for wartosc in wartosci for kolor in koloru]
+            # random.shuffle(talia)
+            # print(talia)
+            #
+            # player_cards = random.sample(talia, 2)
+            # dealer_cards = random.sample(talia, 2)
+            #
+            # player_cards_value = [get_card_value(card) for card in player_cards]
+            # dealer_cards_value = [get_card_value(card) for card in dealer_cards]
+            #
+            # print(f"Twoje karty: {player_cards}")
+            # print(f"Jedna z kart dealera: {dealer_cards[0]}")
+            # print("Dobierasz czy pasujesz?")
         case 2:
             print("Wybrałeś: Jednoręki Bandyta.")
+            symbols = ["🍒", "🍋", "🍉", "🍇", "🍍",]
+            bet()
+            print("Rozpoczynam kręcenie bębna...")
+            time.sleep(1.6)
+            for i in range(15):
+                final_symbols = [random.choice(symbols) for _ in range(3)]
+                print(" ".join(final_symbols))
+                time.sleep(0.1)
+            if final_symbols[0] == final_symbols[1] == final_symbols[2]:
+                print("Wygrałeś!")
+                actuall_money += + (bet_money * 2)
+                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+            else:
+                print("Przegrałeś!")
+                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+            time.sleep(2)
+            menu()
         case 3:
             print("Wybrałeś ruletkę.")
             time.sleep(0.5)
