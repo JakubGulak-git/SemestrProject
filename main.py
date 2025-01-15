@@ -5,6 +5,8 @@ import shutil
 import random
 import time
 
+from colorama.ansi import clear_line
+
 roulette_numbers = list(range(1,37))
 red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
 black_numbers = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
@@ -59,8 +61,10 @@ def menu():
                         break
                     case 2:
                         print("Top 100 wygranych:")
-                        f = open("top.txt", "r")
-                        print(f.read())
+                        with open(r"top.txt", "r") as file:
+                            for line in file:
+                                clean_line = line.strip()
+                                print(clean_line)
                         input("Kliknij ENTER aby wrócić do menu kasyna...")
                     case 3:
                         print(f"Do zobaczenia! \nZabierasz ze sobą: {actuall_money} $")
@@ -103,7 +107,7 @@ def roulette(rn):
                                     print("Błąd: wybierz opcję 1, 2 lub 3.")
                             except ValueError:
                                 print("Błąd: wybierz opcję 1, 2 lub 3.")
-                        print(bet())
+                        bet()
                         break # ważny break
                     case 2:
                         print("Wybrałeś: dokładne liczby")
