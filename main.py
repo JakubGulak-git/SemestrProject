@@ -25,8 +25,11 @@ def get_user_name():
 def get_money_amount():
     return random.randint(100,1000)
 
+bet_money = 0
+actuall_money = get_money_amount()
+
 def bet():
-    global actuall_money
+    global actuall_money, bet_money
     print(f"Twoja aktualna ilość pieniędzy: {actuall_money}$")
     if actuall_money != 0:
         while True:
@@ -40,8 +43,6 @@ def bet():
         print("Koniec gry na dziś!")
     return actuall_money
 
-
-actuall_money = get_money_amount()
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
 def welcome():
     print(f"Cześć {get_user_name()}, twoja początkowa ilośc pieniędzy to: {actuall_money}$."
@@ -73,6 +74,7 @@ def menu():
             print("Błąd: wybierz opcję 1, 2 lub 3.")
 
 def roulette(rn):
+    global actuall_money
     while True:
         try:
             chose_from_roulette_menu = int(input(f" 1. Kolory \n "
@@ -131,11 +133,11 @@ def roulette(rn):
     print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
     if color == x:
         print("Wygrałeś")
-        # actuall_money = actuall_money + (bet_moe)
-        print(f"Aktualna ilość pieniędzy: {actuall_money}")
+        actuall_money += + (bet_money*2)
+        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
     else:
         print("Przegrałeś")
-        print(f"Aktualna ilość pieniędzy: {actuall_money}")
+        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
 
 
 
