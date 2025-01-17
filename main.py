@@ -23,7 +23,7 @@ def get_user_name():
 def get_money_amount():
     return random.randint(100,1000)
 
-def roulette_start(rn):
+def roulette_colors(rn):
     global actuall_money, chosen_number
     print("Wybrałeś kolory")
     print("Jaki kolor chcesz obstawić?")
@@ -81,7 +81,7 @@ def roulette_start(rn):
                 time.sleep(2)
                 menu()
             else:
-                roulette_start(rn)
+                roulette_colors(rn)
                 break
         elif play_again == 'n':
             menu()
@@ -89,7 +89,100 @@ def roulette_start(rn):
         else:
             print("Błąd: wybierz 't' (tak) lub 'n' (nie).")
 
+def roulette_exact_number(rn):
+    global actuall_money, chosen_number
+    print("Wybrałeś: dokładne liczby")
+    print("Jaką liczbę chcesz obstawić? (1-37)")
 
+    while True:
+        try:
+            chose_from_numbers = int(input())
+            if chose_from_numbers in rn:
+                chosen_number = chose_from_numbers
+                break
+            else:
+                print("Błąd: wybierz liczbę od 1 do 37.")
+        except ValueError:
+            print("Błąd: wybierz liczbę od 1 do 37.")
+
+    bet()
+    print("Rozpoczynam kręcenie ruletki...")
+    time.sleep(1.6)
+
+    for i in roulette_numbers:
+        print(final_number := random.choice(rn))
+        time.sleep(0.1)
+
+    print(f"Wylosowana liczba to: {final_number}")
+    if final_number == chosen_number:
+        print("Wygrałeś!")
+        actuall_money += bet_money * 37
+        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+    else:
+        print("Przegrałeś!")
+        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+
+    time.sleep(1.5)
+
+    while True:
+        play_again = input("Czy chcesz zagrać jeszcze raz? (t/n): ").strip().lower()
+        if play_again == 't':
+            if actuall_money <= 0:
+                print("Nie masz wystarczającej ilości pieniędzy, wracasz do menu.")
+                time.sleep(2)
+                menu()
+            else:
+                roulette_exact_number(rn)
+                break
+        elif play_again == 'n':
+            menu()
+            break
+        else:
+            print("Błąd: wybierz 't' (tak) lub 'n' (nie).")
+
+def roulette_secvention(rn):
+    global actuall_money, bet_money
+    chosen_numbers = 0
+    print("Wybrałeś: sekwencje")
+    print("Jaką sekwencję wybierasz?")
+    chose_from_menu = int(input(f" \n 1. Parzyste \n "
+                                f"2. Nieparzyste \n"))
+    if chose_from_menu in [1, 2]:
+        match chose_from_menu:
+            case 1:
+                print("Wybrałeś: parzyste")
+                chosen_numbers = [number for number in roulette_numbers if number % 2 == 0]
+            case 2:
+                print("Wybrałeś: nieparzyste")
+                chosen_numbers = [number for number in roulette_numbers if number % 2 == 1]
+        bet()
+        print("Rozpoczynam kręcenie ruletki...")
+        time.sleep(1.6)
+        for i in roulette_numbers:
+            print(final_number := random.choice(rn))
+            time.sleep(0.1)
+        print(f"Wylosowana liczba to: {final_number}")
+        if final_number in chosen_numbers:
+            print("Wygrałeś!")
+            actuall_money += + (bet_money * 2)
+        else:
+            print("Przegrałeś!")
+        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+        while True:
+            play_again = input("Czy chcesz zagrać jeszcze raz? (t/n): ").strip().lower()
+            if play_again == 't':
+                if actuall_money <= 0:
+                    print("Nie masz wystarczającej ilości pieniędzy, wracasz do menu.")
+                    time.sleep(2)
+                    menu()
+                else:
+                    roulette_secvention(rn)
+                    break
+            elif play_again == 'n':
+                menu()
+                break
+            else:
+                print("Błąd: wybierz 't' (tak) lub 'n' (nie).")
 
 bet_money = 0
 actuall_money = get_money_amount()
@@ -97,13 +190,8 @@ actuall_money = get_money_amount()
 def bet():
     global actuall_money, bet_money
     print(f"Twoja aktualna ilość pieniędzy: {actuall_money}$")
-    while True:
-        bet_money = int(input("ile $$$ chcesz postawić? "))
-        if bet_money > actuall_money:
-            print("nie masz tyle pieniędzy")
-        else:
-            actuall_money -= bet_money
-            break
+    bet_money = int(input("ile $$$ chcesz postawić? "))
+    actuall_money -= bet_money
     return actuall_money, bet_money
 
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
@@ -147,64 +235,11 @@ def roulette(rn):
             if chose_from_roulette_menu in [1,2,3]:
                 match chose_from_roulette_menu:
                     case 1:
-                        roulette_start(rn)
+                        roulette_colors(rn)
                     case 2:
-                        print("Wybrałeś: dokładne liczby")
-                        print("Jaką liczbe chcesz?")
-                        while True:
-                            try:
-                                chose_from_numbers = int(input())
-                                if chose_from_numbers in roulette_numbers:
-                                    chosen_number = chose_from_numbers
-                                else:
-                                    print("Błąd: wybierz liczbe od 1 do 37")
-                            except ValueError:
-                                print("Błąd: wybierz liczbe od 1 do 37")
-                            bet()
-                            print("Rozpoczynam kręcenie ruletki...")
-                            time.sleep(1.6)
-                            for i in roulette_numbers:
-                                print(final_number := random.choice(rn))
-                                time.sleep(0.1)
-                            print(f"Wylosowana liczba to: {final_number}")
-                            if final_number == chosen_number:
-                                print("Wygrałeś!")
-                                actuall_money += + (bet_money * 37)
-                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-                            else:
-                                print("Przegrałeś!")
-                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-                            menu()
+                        roulette_exact_number(rn)
                     case 3:
-                        chosen_numbers = 0
-                        print("Wybrałeś: sekwencje")
-                        print("Jaką sekwencję wybierasz?")
-                        chose_from_menu = int(input(f" \n 1. Parzyste \n "
-                                f"2. Nieparzyste \n"))
-                        if chose_from_menu in [1, 2]:
-                            match chose_from_menu:
-                                case 1:
-                                    print("Wybrałeś: parzyste")
-                                    chosen_numbers = [number for number in roulette_numbers if number % 2 == 0]
-                                case 2:
-                                    print("Wybrałeś: nieparzyste")
-                                    chosen_numbers = [number for number in roulette_numbers if number % 2 == 1]
-                            bet()
-                            print("Rozpoczynam kręcenie ruletki...")
-                            time.sleep(1.6)
-                            for i in roulette_numbers:
-                                print(final_number := random.choice(rn))
-                                time.sleep(0.1)
-                            print(f"Wylosowana liczba to: {final_number}")
-                            if final_number in chosen_numbers:
-                                print("Wygrałeś!")
-                                actuall_money += + (bet_money * 2)
-                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-                            else:
-                                print("Przegrałeś!")
-                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-                time.sleep(2)
-                menu()
+                        roulette_secvention(rn)
             else:
                 print("Błąd: wybierz opcję 1, 2 lub 3.")
         except ValueError:
