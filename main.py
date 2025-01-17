@@ -125,13 +125,11 @@ def roulette(rn):
                             print("Wygrałeś")
                             if color == "zielony":
                                 actuall_money += + (bet_money * 12)
-                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
                             else:
                                 actuall_money += + (bet_money * 2)
-                                print(f"Aktualna ilość pieniędzy: {actuall_money} $")
                         else:
                             print("Przegrałeś")
-                            print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+                        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
                         time.sleep(2)
                         menu()
                     case 2:
@@ -218,6 +216,9 @@ def chose_game_place():
     match game_place:
         case 1:
             print("Wybrałeś: Blackjack")
+            print("prace trwają :DD")
+            time.sleep(2)
+            menu()
             # bet()
             # wartosci = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
             # koloru = ["♠", "♥", "♦", "♣"]
@@ -261,9 +262,6 @@ def chose_game_place():
             roulette(roulette_numbers)
         case 4:
             menu()
-
-
-
 
 welcome()
 time.sleep(1)
