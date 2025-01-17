@@ -1,11 +1,7 @@
-from typing import final
-
 from colorama import Fore
 import shutil
 import random
 import time
-
-from colorama.ansi import clear_line
 
 roulette_numbers = list(range(0,36))
 red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
@@ -26,6 +22,74 @@ def get_user_name():
 # funkcja losująca początkowa ilość pieniędzy
 def get_money_amount():
     return random.randint(100,1000)
+
+def roulette_start(rn):
+    global actuall_money, chosen_number
+    print("Wybrałeś kolory")
+    print("Jaki kolor chcesz obstawić?")
+    while True:
+        try:
+            chose_from_colors = int(input(f" 1. Czarny \n "
+                                          f"2. Czerwony \n 3. Zielony \n"))
+            if chose_from_colors in [1, 2, 3]:
+                match chose_from_colors:
+                    case 1:
+                        print("Wybrałeś: czarny")
+                        x = "czarny"
+                        break
+                    case 2:
+                        print("Wybrałeś: czerwony")
+                        x = "czerwony"
+                        break
+                    case 3:
+                        print("Wybrałeś: zielony")
+                        x = "zielony"
+                        break
+            else:
+                print("Błąd: wybierz opcję 1, 2 lub 3.")
+        except ValueError:
+            print("Błąd: wybierz opcję 1, 2 lub 3.")
+    bet()
+    print("Rozpoczynam kręcenie ruletki...")
+    time.sleep(1.6)
+    for i in roulette_numbers:
+        print(final_number := random.choice(rn))
+        time.sleep(0.1)
+    color = ""
+    if final_number in red_numbers:
+        color = "czerwony"
+    if final_number in black_numbers:
+        color = "czarny"
+    if final_number in green_number:
+        color = "zielony"
+    print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
+    if color == x:
+        print("Wygrałeś")
+        if color == "zielony":
+            actuall_money += + (bet_money * 12)
+        else:
+            actuall_money += + (bet_money * 2)
+    else:
+        print("Przegrałeś")
+    print(f"Aktualna ilość pieniędzy: {actuall_money} $")
+    time.sleep(1.5)
+    while True:
+        play_again = input("Czy chcesz zagrać jeszcze raz? (t/n): ").strip().lower()
+        if play_again == 't':
+            if actuall_money <= 0:
+                print("Nie masz wystarczającej ilości pieniędzy, wracasz do menu.")
+                time.sleep(2)
+                menu()
+            else:
+                roulette_start(rn)
+                break
+        elif play_again == 'n':
+            menu()
+            break
+        else:
+            print("Błąd: wybierz 't' (tak) lub 'n' (nie).")
+
+
 
 bet_money = 0
 actuall_money = get_money_amount()
@@ -83,55 +147,7 @@ def roulette(rn):
             if chose_from_roulette_menu in [1,2,3]:
                 match chose_from_roulette_menu:
                     case 1:
-                        print("Wybrałeś kolory")
-                        print("Jaki kolor chcesz obstawić?")
-                        while True:
-                            try:
-                                chose_from_colors = int(input(f" 1. Czarny \n "
-                                                            f"2. Czerwony \n 3. Zielony \n"))
-                                if chose_from_colors in [1, 2, 3]:
-                                    match chose_from_colors:
-                                        case 1:
-                                            print("Wybrałeś: czarny")
-                                            x = "czarny"
-                                            break
-                                        case 2:
-                                            print("Wybrałeś: czerwony")
-                                            x = "czerwony"
-                                            break
-                                        case 3:
-                                            print("Wybrałeś: zielony")
-                                            x = "zielony"
-                                            break
-                                else:
-                                    print("Błąd: wybierz opcję 1, 2 lub 3.")
-                            except ValueError:
-                                print("Błąd: wybierz opcję 1, 2 lub 3.")
-                        bet()
-                        print("Rozpoczynam kręcenie ruletki...")
-                        time.sleep(1.6)
-                        for i in roulette_numbers:
-                            print(final_number := random.choice(rn))
-                            time.sleep(0.1)
-                        color = ""
-                        if final_number in red_numbers:
-                            color = "czerwony"
-                        if final_number in black_numbers:
-                            color = "czarny"
-                        if final_number in green_number:
-                            color = "zielony"
-                        print(f"Wylosowana liczba to: {final_number}, kolor: {color}")
-                        if color == x:
-                            print("Wygrałeś")
-                            if color == "zielony":
-                                actuall_money += + (bet_money * 12)
-                            else:
-                                actuall_money += + (bet_money * 2)
-                        else:
-                            print("Przegrałeś")
-                        print(f"Aktualna ilość pieniędzy: {actuall_money} $")
-                        time.sleep(2)
-                        menu()
+                        roulette_start(rn)
                     case 2:
                         print("Wybrałeś: dokładne liczby")
                         print("Jaką liczbe chcesz?")
