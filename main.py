@@ -28,8 +28,8 @@ def roulette(rn):
     while True:
         try:
             chose_from_roulette_menu = int(input(f" 1. Kolory \n "
-                                   f"2. Dokładne liczby \n 3. Sekwencje \n"))
-            if chose_from_roulette_menu in [1,2,3]:
+                                   f"2. Dokładne liczby \n 3. Sekwencje \n 4. Powrót \n"))
+            if chose_from_roulette_menu in [1,2,3,4]:
                 match chose_from_roulette_menu:
                     case 1:
                         roulette_colors(rn)
@@ -37,10 +37,12 @@ def roulette(rn):
                         roulette_exact_number(rn)
                     case 3:
                         roulette_secvention(rn)
+                    case 4:
+                        chose_game_place()
             else:
-                print("Błąd: wybierz opcję 1, 2 lub 3.")
+                print("Błąd: wybierz opcję 1, 2, 3 lub 4.")
         except ValueError:
-            print("Błąd: wybierz opcję 1, 2 lub 3.")
+            print("Błąd: wybierz opcję 1, 2, 3 lub 4.")
 
 def roulette_colors(rn):
     global actuall_money, chosen_number
@@ -49,8 +51,8 @@ def roulette_colors(rn):
     while True:
         try:
             chose_from_colors = int(input(f" 1. Czarny \n "
-                                          f"2. Czerwony \n 3. Zielony \n"))
-            if chose_from_colors in [1, 2, 3]:
+                                          f"2. Czerwony \n 3. Zielony \n 4. Powrót \n"))
+            if chose_from_colors in [1, 2, 3, 4]:
                 match chose_from_colors:
                     case 1:
                         print("Wybrałeś: czarny")
@@ -64,10 +66,12 @@ def roulette_colors(rn):
                         print("Wybrałeś: zielony")
                         x = "zielony"
                         break
+                    case 4:
+                        roulette(rn)
             else:
-                print("Błąd: wybierz opcję 1, 2 lub 3.")
+                print("Błąd: wybierz opcję 1, 2, 3 lub 4.")
         except ValueError:
-            print("Błąd: wybierz opcję 1, 2 lub 3.")
+            print("Błąd: wybierz opcję 1, 2, 3 lub 4.")
     bet()
     print("Rozpoczynam kręcenie ruletki...")
     time.sleep(1.6)
