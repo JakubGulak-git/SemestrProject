@@ -3,7 +3,7 @@ import shutil
 import random
 import time
 
-roulette_numbers = list(range(0,36))
+roulette_numbers = list(range(0,37))
 red_numbers = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36}
 black_numbers = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
 green_number = {0}
@@ -111,7 +111,7 @@ def roulette_colors(rn):
 def roulette_exact_number(rn):
     global actuall_money, chosen_number
     print("Wybrałeś: dokładne liczby")
-    print("Jaką liczbę chcesz obstawić? (1-37)")
+    print("Jaką liczbę chcesz obstawić? (1-36)")
 
     while True:
         try:
@@ -203,7 +203,7 @@ def roulette_secvention(rn):
             else:
                 print("Błąd: wybierz 't' (tak) lub 'n' (nie).")
 
-def bandita():
+def one_armed_bandit():
     global actuall_money, bet_money
     print("Wybrałeś: Jednoręki Bandyta.")
     symbols = ["🍒", "🍋", "🍉", "🍇", "🍍", ]
@@ -230,7 +230,7 @@ def bandita():
                 time.sleep(2)
                 menu()
             else:
-                bandita()
+                one_armed_bandit()
                 break
         elif play_again == 'n':
             menu()
@@ -244,8 +244,18 @@ actuall_money = get_money_amount()
 def bet():
     global actuall_money, bet_money
     print(f"Twoja aktualna ilość pieniędzy: {actuall_money}$")
-    bet_money = int(input("ile $$$ chcesz postawić? "))
-    actuall_money -= bet_money
+    while True:
+        try:
+            bet_money = int(input("ile $$$ chcesz postawić? "))
+            if bet_money > actuall_money:
+                print("Nie możesz postawić więcej niż masz. Spróbuj ponownie.")
+            elif bet_money <= 0:
+                print("Kwota która chcesz postawić musi być większa od zera")
+            else:
+                actuall_money -= bet_money
+                break
+        except ValueError:
+            print("Wprowadź poprawną liczbę.")
     return actuall_money, bet_money
 
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
@@ -306,7 +316,7 @@ def chose_game_place():
             time.sleep(2)
             menu()
         case 2:
-            bandita()
+            one_armed_bandit()
         case 3:
             print("Wybrałeś ruletkę.")
             time.sleep(0.5)
