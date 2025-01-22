@@ -168,7 +168,7 @@ def roulette_secvention(rn):
     chosen_numbers = 0
     print("Wybrałeś: sekwencje")
     print("Jaką sekwencję wybierasz?")
-    chose_from_menu = int(input(f" \n 1. Parzyste \n "
+    chose_from_menu = int(input(f" 1. Parzyste \n "
                                 f"2. Nieparzyste \n"))
     if chose_from_menu in [1, 2]:
         match chose_from_menu:
@@ -262,10 +262,13 @@ def bet():
             print("Wprowadź poprawną liczbę.")
     return actuall_money, bet_money
 
+user_name = get_user_name()
+
 # funkcja "witająca" użytkownika, podaje jego imię oraz ilość pieniędzy korzystając z dwóch funkcji: get_user_name i get_money_amount
 def welcome():
-    print(f"Cześć {get_user_name()}, twoja początkowa ilośc pieniędzy to: {actuall_money}$."
+    print(f"Cześć {user_name}, twoja początkowa ilośc pieniędzy to: {actuall_money}$."
           f" Baw się dobrze!")
+
 
 def menu():
     while True:
@@ -288,6 +291,9 @@ def menu():
                         input("Kliknij ENTER aby wrócić do menu kasyna...")
                     case 3:
                         print(f"Do zobaczenia! \nZabierasz ze sobą: {actuall_money} $")
+                        with open("top.txt", "a") as file:
+                            file.write(f"{user_name} - {actuall_money}$\n")
+                        print("Zapisano twoje wyniki w top.txt.")
                         exit()
             else:
                 print("Błąd: wybierz opcję 1, 2 lub 3.")
@@ -332,7 +338,3 @@ def chose_game_place():
 welcome()
 time.sleep(1)
 menu()
-
-
-
-
